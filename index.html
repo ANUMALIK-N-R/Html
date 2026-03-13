@@ -1,176 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Blooming Rose</title>
+    <meta charset="UTF-8">
+    <title>Blooming Rose</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #000, #2b0033);
+            overflow: hidden;
+            font-family: sans-serif;
+        }
 
-<style>
+        .rose {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#000,#2b0033);
-    overflow:hidden;
-    font-family:sans-serif;
-}
+        .petal {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #ff6b81, #8b0000);
+            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+            transform-origin: bottom center;
+            /* Use the --r variable we define in the inline style or nth-child */
+            animation: bloom 4s infinite ease-in-out alternate;
+            opacity: 0.9;
+        }
 
-.rose{
-    position:relative;
-    width:200px;
-    height:200px;
-}
+        /* Define the rotation for each petal manually since the keyframe uses scale */
+        .petal:nth-child(1) { transform: rotate(0deg); --r: 0deg; }
+        .petal:nth-child(2) { transform: rotate(45deg); --r: 45deg; }
+        .petal:nth-child(3) { transform: rotate(90deg); --r: 90deg; }
+        .petal:nth-child(4) { transform: rotate(135deg); --r: 135deg; }
+        .petal:nth-child(5) { transform: rotate(180deg); --r: 180deg; }
+        .petal:nth-child(6) { transform: rotate(225deg); --r: 225deg; }
+        .petal:nth-child(7) { transform: rotate(270deg); --r: 270deg; }
+        .petal:nth-child(8) { transform: rotate(315deg); --r: 315deg; }
 
-.petal{
-    position:absolute;
-    width:100px;
-    height:140px;
-    background:radial-gradient(circle at 30% 30%, #ff6b81, #8b0000);
-    border-radius:60% 60% 60% 60%;
-    transform-origin:bottom center;
-    animation:bloom 5s infinite ease-in-out alternate;
-}
+        @keyframes bloom {
+            0% {
+                transform: rotate(var(--r)) scale(0.3);
+            }
+            100% {
+                transform: rotate(var(--r)) scale(1.1) translateY(-10px);
+            }
+        }
 
-.petal:nth-child(1){
-    transform:rotate(0deg);
-}
+        .center {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, gold, orange);
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 20px gold;
+        }
 
-.petal:nth-child(2){
-    transform:rotate(45deg);
-}
+        .text {
+            position: absolute;
+            bottom: 60px;
+            color: white;
+            font-size: 24px;
+            animation: fade 2s infinite alternate;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
 
-.petal:nth-child(3){
-    transform:rotate(90deg);
-}
+        @keyframes fade {
+            0% { opacity: 0.5; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
 
-.petal:nth-child(4){
-    transform:rotate(135deg);
-}
-
-.petal:nth-child(5){
-    transform:rotate(180deg);
-}
-
-.petal:nth-child(6){
-    transform:rotate(225deg);
-}
-
-.petal:nth-child(7){
-    transform:rotate(270deg);
-}
-
-.petal:nth-child(8){
-    transform:rotate(315deg);
-}
-
-@keyframes bloom{
-
-0%{
-transform:scale(0.6) rotate(var(--r));
-}
-
-100%{
-transform:scale(1.1) rotate(var(--r));
-}
-
-}
-
-.center{
-position:absolute;
-width:60px;
-height:60px;
-background:gold;
-border-radius:50%;
-top:70px;
-left:70px;
-box-shadow:0 0 20px gold;
-}
-
-.text{
-position:absolute;
-bottom:40px;
-color:white;
-font-size:24px;
-animation:fade 4s infinite alternate;
-}
-
-@keyframes fade{
-
-0%{opacity:0.4;}
-100%{opacity:1;}
-
-}
-
-</style>
-
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="rose">
-
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-<div class="petal"></div>
-
-<div class="center"></div>
-
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal)</div> <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="center"></div>
 </div>
 
 <div class="text">A Rose For You 🌹</div>
 
 <script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "absolute";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "100vh";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        heart.style.animation = "float 5s linear forwards";
+        heart.style.cursor = "default";
+        heart.style.userSelect = "none";
 
-// small floating hearts effect
+        document.body.appendChild(heart);
 
-function createHeart(){
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
 
-const heart = document.createElement("div")
-
-heart.innerHTML="❤️"
-
-heart.style.position="absolute"
-heart.style.left=Math.random()*100+"vw"
-heart.style.top="100vh"
-heart.style.fontSize="20px"
-heart.style.animation="float 5s linear"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>{
-
-heart.remove()
-
-},5000)
-
-}
-
-setInterval(createHeart,800)
-
+    setInterval(createHeart, 400);
 </script>
-
-<style>
-
-@keyframes float{
-
-0%{
-transform:translateY(0)
-}
-
-100%{
-transform:translateY(-120vh)
-}
-
-}
-
-</style>
 
 </body>
 </html>
