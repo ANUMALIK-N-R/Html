@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blooming Rose</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#000,#2b0033);
+    overflow:hidden;
+    font-family:sans-serif;
+}
+
+.rose{
+    position:relative;
+    width:200px;
+    height:200px;
+}
+
+.petal{
+    position:absolute;
+    width:100px;
+    height:140px;
+    background:radial-gradient(circle at 30% 30%, #ff6b81, #8b0000);
+    border-radius:60% 60% 60% 60%;
+    transform-origin:bottom center;
+    animation:bloom 5s infinite ease-in-out alternate;
+}
+
+.petal:nth-child(1){
+    transform:rotate(0deg);
+}
+
+.petal:nth-child(2){
+    transform:rotate(45deg);
+}
+
+.petal:nth-child(3){
+    transform:rotate(90deg);
+}
+
+.petal:nth-child(4){
+    transform:rotate(135deg);
+}
+
+.petal:nth-child(5){
+    transform:rotate(180deg);
+}
+
+.petal:nth-child(6){
+    transform:rotate(225deg);
+}
+
+.petal:nth-child(7){
+    transform:rotate(270deg);
+}
+
+.petal:nth-child(8){
+    transform:rotate(315deg);
+}
+
+@keyframes bloom{
+
+0%{
+transform:scale(0.6) rotate(var(--r));
+}
+
+100%{
+transform:scale(1.1) rotate(var(--r));
+}
+
+}
+
+.center{
+position:absolute;
+width:60px;
+height:60px;
+background:gold;
+border-radius:50%;
+top:70px;
+left:70px;
+box-shadow:0 0 20px gold;
+}
+
+.text{
+position:absolute;
+bottom:40px;
+color:white;
+font-size:24px;
+animation:fade 4s infinite alternate;
+}
+
+@keyframes fade{
+
+0%{opacity:0.4;}
+100%{opacity:1;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="rose">
+
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+<div class="petal"></div>
+
+<div class="center"></div>
+
+</div>
+
+<div class="text">A Rose For You 🌹</div>
+
+<script>
+
+// small floating hearts effect
+
+function createHeart(){
+
+const heart = document.createElement("div")
+
+heart.innerHTML="❤️"
+
+heart.style.position="absolute"
+heart.style.left=Math.random()*100+"vw"
+heart.style.top="100vh"
+heart.style.fontSize="20px"
+heart.style.animation="float 5s linear"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+
+heart.remove()
+
+},5000)
+
+}
+
+setInterval(createHeart,800)
+
+</script>
+
+<style>
+
+@keyframes float{
+
+0%{
+transform:translateY(0)
+}
+
+100%{
+transform:translateY(-120vh)
+}
+
+}
+
+</style>
+
+</body>
+</html>
